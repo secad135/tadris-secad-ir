@@ -1,0 +1,11 @@
+# System Files
+*:Zone.Identifier
+.DS_Store
+Thumbs.db
+
+# Sensitive Configs
+config/config.php
+.env
+
+# Logs & Caches
+*.log

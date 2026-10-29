@@ -1,0 +1,485 @@
+/* public/assets/css/style.css */
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+
+:root {
+    --primary-color: #2563eb;
+    --text-color: #1f2937;
+    --bg-color: #f3f4f6;
+    --nav-bg: #ffffff;
+    --card-bg: #ffffff; /* رنگ کادرهای سفید */
+    --border-color: #e5e7eb;
+    --sidebar-width: 260px;
+    --transition-speed: 0.3s;
+}
+
+/* استایل‌های حالت تاریک (Dark Mode) */
+[data-theme="dark"] {
+    --primary-color: #60a5fa; /* آبی روشن‌تر برای دیده شدن در تاریکی */
+    --text-color: #f3f4f6;
+    --bg-color: #111827;
+    --nav-bg: #1f2937;
+    --card-bg: #1f2937;
+    --border-color: #374151;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Vazirmatn', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    direction: rtl;
+    line-height: 1.6;
+}
+
+/* اصلاح نوار بالا */
+.navbar {
+    background-color: var(--nav-bg);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 60px;
+    transition: background-color var(--transition-speed);
+}
+
+/* بخش دکمه‌ها در سمت چپ نوار */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    order: 2; /* قرارگیری در سمت چپ در حالت RTL */
+}
+
+/* استایل دکمه تغییر پوسته */
+.theme-toggle-btn {
+    display: flex !important; /* مجبور به نمایش در همه حالت‌ها */
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--border-color);
+}
+
+/* اصلاح استایل منوی اصلی در دسکتاپ */
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    order: 1; /* منوها سمت راست */
+}
+
+/* ریسپانسیو برای موبایل */
+@media (max-width: 768px) {
+    .navbar-actions {
+        order: 2;
+    }
+    .nav-links {
+        order: 3;
+        display: none;
+    }
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        background-color: var(--nav-bg);
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+}
+
+.navbar-brand {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color var(--transition-speed);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* دکمه منو برای موبایل */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+/* کانتینر اصلی */
+.main-container {
+    display: flex;
+    min-height: calc(100vh - 60px);
+}
+
+/* سایدبار (فعلاً در صفحه اصلی مخفی است) */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--card-bg); /* اینجا تغییر کرد */
+    border-left: 1px solid var(--border-color); /* اینجا هم تغییر کرد */
+    padding: 20px;
+    transition: transform var(--transition-speed) ease-in-out;
+}
+
+.content-area {
+    flex: 1;
+    padding: 30px;
+    background-color: var(--bg-color);
+}
+
+/* استایل‌های ریسپانسیو برای موبایل */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none; /* در موبایل منو مخفی می‌شود و با دکمه باز می‌شود */
+    }
+
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        background-color: var(--nav-bg);
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 60px;
+        right: -100%; /* در موبایل خارج از صفحه است */
+        height: calc(100vh - 60px);
+        z-index: 999;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    }
+
+    .sidebar.active {
+        right: 0; /* با کلیک روی دکمه به داخل صفحه می‌آید */
+    }
+}
+
+@media (max-width: 768px) {
+    #sidebarToggle {
+        display: block !important; /* نمایش دکمه سایدبار فقط در موبایل */
+        background: var(--bg-color);
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================
+   استایل‌های محتوای Markdown
+   ========================================== */
+
+/* ۱. استایل جداول */
+/* ۱. استایل جداول */
+.content-area table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: var(--card-bg); /* اصلاح شد */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    color: var(--text-color); /* اصلاح شد */
+}
+
+.content-area table th,
+.content-area table td {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color); /* اصلاح شد */
+    text-align: right;
+}
+
+.content-area table th {
+    background-color: var(--bg-color); /* اصلاح شد */
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.content-area table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02); /* یک سایه ملایم برای ردیف‌های زوج */
+}
+
+[data-theme="dark"] .content-area table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05); /* سایه ملایم برای حالت تاریک */
+}
+
+.content-area table tr:hover {
+    background-color: rgba(37, 99, 235, 0.1); /* هاور آبی ملایم */
+}
+
+/* ۴. استایل نقل قول (Blockquote) */
+.content-area blockquote {
+    border-right: 4px solid var(--primary-color);
+    background-color: var(--bg-color); /* اصلاح شد */
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 4px;
+    color: var(--text-color); /* اصلاح شد */
+}
+
+/* ۲. استایل بلوک‌های کد (Code Blocks) */
+.content-area pre {
+    background-color: #1e293b !important; /* پس‌زمینه تیره */
+    color: #e2e8f0 !important;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    direction: ltr !important; /* کدها همیشه چپ‌چین */
+    text-align: left !important;
+    margin: 20px 0;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.content-area pre code {
+    background: transparent !important;
+    color: inherit !important;
+    padding: 0;
+    font-family: inherit;
+}
+
+/* ۳. استایل کدهای داخل خط (Inline Code) */
+.content-area code:not(pre code) {
+    background-color: #f1f5f9;
+    color: #e11d48;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    direction: ltr;
+    display: inline-block;
+}
+
+/* ۴. استایل نقل قول (Blockquote) */
+.content-area blockquote {
+    border-right: 4px solid var(--primary-color);
+    background-color: #eff6ff;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 4px;
+    color: #374151;
+}
+
+/* ۵. استایل لیست‌های داخل محتوا */
+.content-area ul, 
+.content-area ol {
+    padding-right: 25px;
+    margin: 15px 0;
+}
+
+.content-area li {
+    margin-bottom: 8px;
+}
+
+/* ۶. استایل تیترها */
+.content-area h1,
+.content-area h2,
+.content-area h3,
+.content-area h4 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: var(--text-color); 
+    line-height: 1.4;
+}
+
+.content-area h1 { font-size: 2rem; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; }
+.content-area h2 { font-size: 1.6rem; }
+.content-area h3 { font-size: 1.3rem; }
+.content-area h4 { font-size: 1.1rem; }
+
+/* ۷. استایل لینک‌ها */
+.content-area a {
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--primary-color);
+}
+
+.content-area a:hover {
+    border-bottom-style: solid;
+}
+
+/* ۸. استایل تصاویر */
+.content-area img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+/* ==========================================
+   استایل‌های سایدبار در موبایل
+   ========================================== */
+.btn-sidebar-toggle {
+    display: none; /* در دسکتاپ مخفی است */
+    background: var(--bg-color);
+    color: var(--primary-color);
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Vazirmatn', sans-serif;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .btn-sidebar-toggle {
+        display: block; /* در موبایل نمایش داده می‌شود */
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 60px; /* ارتفاع navbar */
+        right: -100%; /* در حالت عادی خارج از صفحه است */
+        width: 280px;
+        height: calc(100vh - 60px);
+        background:  var(--card-bg);
+        z-index: 1000;
+        transition: right 0.3s ease-in-out;
+        overflow-y: auto;
+    }
+
+    .sidebar.active {
+        right: 0; /* با کلیک، وارد صفحه می‌شود */
+    }
+
+    /* یک لایه تاریک پشت سایدبار تا با کلیک روی آن، سایدبار بسته شود */
+    .sidebar-backdrop {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+    }
+
+    .sidebar-backdrop.active {
+        display: block;
+    }
+}
+
+/* ==========================================
+   رفع مشکل سرریز عرض در موبایل
+   ========================================== */
+
+/* ۱. جلوگیری از بیرون زدن کل صفحه */
+.main-container {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* ۲. حیاتی‌ترین اصلاح Flexbox */
+.content-area {
+    min-width: 0; /* اجازه می‌دهد محتوا در موبایل کوچک‌تر از محتوای داخلی شود */
+    overflow-wrap: break-word; /* شکستن کلمات بسیار طولانی */
+    word-wrap: break-word;
+}
+
+/* ۳. اصلاحات مخصوص موبایل */
+@media (max-width: 768px) {
+    
+    /* کاهش پدینگ‌های اضافی */
+    .content-area {
+        padding: 10px !important;
+    }
+    
+    /* کاهش پدینگ کادر سفید داخل صفحه درس (استایل اینلاین در course.php را بازنویسی می‌کند) */
+    .content-area > div {
+        padding: 15px !important;
+        box-shadow: none !important; /* سایه اضافه در موبایل حذف شود */
+    }
+
+    /* اسکرول افقی برای جداول */
+    .content-area table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    /* اصلاح بلوک‌های کد (متن‌های طولانی برنامه‌نویسی) */
+    .content-area pre {
+        font-size: 0.8rem;
+        padding: 12px;
+        max-width: 100%;
+    }
+
+    /* اصلاح تصاویر */
+    .content-area img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* اصلاح تیترها */
+    .content-area h1 { font-size: 1.5rem; }
+    .content-area h2 { font-size: 1.3rem; }
+    .content-area h3 { font-size: 1.1rem; }
+}
+
+.theme-toggle-btn {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+.theme-toggle-btn:hover {
+    background: var(--border-color);
+}
