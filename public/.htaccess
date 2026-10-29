@@ -1,0 +1,18 @@
+# public/.htaccess
+
+# جلوگیری از نمایش لیست فایل‌ها (Directory Listing)
+Options -Indexes
+
+# جلوگیری از دسترسی به فایل‌های حساس
+<FilesMatch "\.(env|json|sql|md|lock|ini)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# فعال کردن فشرده‌سازی برای سرعت بالاتر
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# تنظیم صفحه پیش‌فرض
+DirectoryIndex index.php

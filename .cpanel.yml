@@ -1,0 +1,17 @@
+---
+deployment:
+  tasks:
+    # مسیر ریشه ساب‌دامین شما (توجه: نام کاربری cPanel خود را جایگزین USERNAME کنید)
+    - export DEPLOYPATH=/home/gehkrlhc/tadris-secad-ir/
+    
+    # کپی کردن محتویات پوشه public به ریشه سایت
+    - /bin/cp -R public/* $DEPLOYPATH
+    
+    # کپی کردن کدهای app و courses به یک پوشه خارج از دسترس وب (یک مرحله عقب‌تر)
+    # این پوشه‌ها باید در /home/USERNAME/ کپی شوند
+    - export APPPATH=/home/gehkrlhc/app/
+    - export COURSESPATH=/home/gehkrlhc/courses/
+    - /bin/mkdir -p $APPPATH
+    - /bin/mkdir -p $COURSESPATH
+    - /bin/cp -R app/* $APPPATH
+    - /bin/cp -R courses/* $COURSESPATH
