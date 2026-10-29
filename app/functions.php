@@ -28,19 +28,10 @@ function get_all_courses() {
  * اعتبارسنجی نام پوشه و فایل (نسخه منعطف و امن)
  */
 function is_valid_name($name) {
-    // ۱. جلوگیری از حرکت به پوشه‌های بالاتر
     if (strpos($name, '..') !== false) return false;
-    
-    // ۲. جلوگیری از کاراکترهای کنترلی (نول بایت و...)
     if (preg_match('/[\x00-\x1F\x7F]/', $name)) return false;
-    
-    // ۳. جلوگیری از بک‌اسلش (مسیر ویندوز)
     if (strpos($name, '\\') !== false) return false;
-    
-    // ۴. جلوگیری از اسلش در ابتدای نام (برای جلوگیری از مسیرهای مطلق)
     if (strpos($name, '/') === 0) return false;
-    
-    // حالا هر کاراکتر دیگری (حتی فاصله و نیم‌فاصله) مجاز است
     return true;
 }
 
@@ -52,16 +43,14 @@ function extract_md_title($file_path) {
     
     $fp = fopen($file_path, 'r');
     $title = '';
-    $lines_to_read = 10; // فقط ۱۰ خط اول را بررسی می‌کنیم تا سرعت بالا بماند
+    $lines_to_read = 10; 
     
     while (($line = fgets($fp)) !== false && $lines_to_read > 0) {
         $line = trim($line);
-        // اگر خط با # (تیتر ۱) شروع شده بود
         if (strpos($line, '# ') === 0) {
             $title = trim(substr($line, 2));
             break;
         } 
-        // اگر تیتر ۲ بود و هنوز تیتر ۱ پیدا نکرده بودیم
         elseif (strpos($line, '## ') === 0 && empty($title)) {
             $title = trim(substr($line, 3));
         }
@@ -86,14 +75,23 @@ function get_course_structure($course_slug) {
     foreach ($items as $item) {
         $path = $course_dir . $item;
         
-        // اگر یک پوشه بود
+        // اگر یک پوشه بود (فصل)
         if (is_dir($path)) {
+            // بررسی وجود فایل meta.json داخل پوشه
+            $dir_title = $item; // پیش‌فرض: نام پوشه
+            $dir_meta_file = $path . '/meta.json';
+            if (is_file($dir_meta_file)) {
+                $dir_meta = json_decode(file_get_contents($dir_meta_file), true);
+                if ($dir_meta && isset($dir_meta['title'])) {
+                    $dir_title = $dir_meta['title'];
+                }
+            }
+
             $files = array_diff(scandir($path), ['.', '..']);
             $md_files = [];
             foreach ($files as $file) {
                 if (pathinfo($file, PATHINFO_EXTENSION) === 'md') {
                     $file_path = $path . '/' . $file;
-                    // استخراج تیتر، اگر نبود از نام فایل استفاده کن
                     $title = extract_md_title($file_path);
                     
                     $md_files[] = [
@@ -107,6 +105,7 @@ function get_course_structure($course_slug) {
                 $structure[] = [
                     'type' => 'dir',
                     'name' => $item,
+                    'display_name' => $dir_title, // ذخیره نام نمایشی
                     'files' => $md_files
                 ];
             }
@@ -124,6 +123,7 @@ function get_course_structure($course_slug) {
     }
     return $structure;
 }
+
 /**
  * تولید کدهای HTML برای نمایش درخت دروس
  */
@@ -141,7 +141,8 @@ function render_lesson_tree($structure, $course_slug, $lesson_file) {
             <?php if($item['type'] === 'dir'): ?>
                 <li style="margin-bottom: 10px; margin-top: 15px;">
                     <span style="font-weight: bold; color: var(--text-color); display: block; border-bottom: 1px solid var(--border-color); padding-bottom: 5px;">
-                        📁 <?= htmlspecialchars($item['name']) ?>
+                        <!-- استفاده از نام نمایشی (اگر نبود، نام پوشه) -->
+                        📁 <?= htmlspecialchars($item['display_name'] ?? $item['name']) ?>
                     </span>
                     <ul style="list-style: none; padding-right: 15px; margin-top: 5px;">
                         <?php foreach($item['files'] as $file): ?>
