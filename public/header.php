@@ -26,7 +26,7 @@ require_once __DIR__ . '/../app/functions.php';
 
     <!-- نوار بالا -->
             <nav class="navbar">
-        <a href="index.php" class="navbar-brand">سکاد</a>
+        <a href="index.php" class="navbar-brand">تدریس سکاد</a>
         
         <div class="navbar-actions">
             <?php if(isset($show_sidebar_toggle) && $show_sidebar_toggle): ?>

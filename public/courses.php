@@ -16,9 +16,10 @@ $courses = get_all_courses();
             <?php else: ?>
                 <?php foreach($courses as $course): ?>
                     <div style="background: var(--card-bg); padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                        <a href="course.php?c=<?= htmlspecialchars($course['slug']) ?>" style="display: inline-block; background: var(--bg-color); color: var(--text-color); padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 0.9rem;">
                         <h3 style="color: var(--primary-color); margin-bottom: 10px;"><?= htmlspecialchars($course['title'] ?? $course['slug']) ?></h3>
+                        </a>
                         <p style="font-size: 0.9rem; color: var(--text-color); margin-bottom: 15px;"><?= htmlspecialchars($course['description'] ?? '') ?></p>
-                        <a href="course.php?c=<?= htmlspecialchars($course['slug']) ?>" style="display: inline-block; background: var(--bg-color); color: var(--text-color); padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 0.9rem;">مشاهده دوره</a>
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
