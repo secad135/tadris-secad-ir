@@ -124,4 +124,49 @@ function get_course_structure($course_slug) {
     }
     return $structure;
 }
+/**
+ * تولید کدهای HTML برای نمایش درخت دروس
+ */
+function render_lesson_tree($structure, $course_slug, $lesson_file) {
+    ob_start();
+    ?>
+    <ul style="list-style: none; padding-right: 0; text-align: right; width: 100%;">
+        <li style="margin-bottom: 15px;">
+            <a href="course.php?c=<?= htmlspecialchars($course_slug) ?>" style="text-decoration: none; display: block; padding: 5px 0; color: <?= !$lesson_file ? 'var(--primary-color); font-weight: bold;' : 'var(--text-color);' ?>">
+                📖 معرفی دوره
+            </a>
+        </li>
+        
+        <?php foreach($structure as $item): ?>
+            <?php if($item['type'] === 'dir'): ?>
+                <li style="margin-bottom: 10px; margin-top: 15px;">
+                    <span style="font-weight: bold; color: var(--text-color); display: block; border-bottom: 1px solid var(--border-color); padding-bottom: 5px;">
+                        📁 <?= htmlspecialchars($item['name']) ?>
+                    </span>
+                    <ul style="list-style: none; padding-right: 15px; margin-top: 5px;">
+                        <?php foreach($item['files'] as $file): ?>
+                            <?php $is_active = ($lesson_file === $file['path']); ?>
+                            <li style="margin-bottom: 8px;">
+                                <a href="course.php?c=<?= htmlspecialchars($course_slug) ?>&l=<?= htmlspecialchars($file['path']) ?>" 
+                                   style="text-decoration: none; display: block; padding: 5px 0; color: <?= $is_active ? 'var(--primary-color); font-weight: bold;' : 'var(--text-color)' ?>; font-size: 0.95rem;">
+                                    📄 <?= htmlspecialchars($file['title']) ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </li>
+            <?php else: ?>
+                <?php $is_active = ($lesson_file === $item['path']); ?>
+                <li style="margin-bottom: 10px;">
+                    <a href="course.php?c=<?= htmlspecialchars($course_slug) ?>&l=<?= htmlspecialchars($item['path']) ?>" 
+                       style="text-decoration: none; display: block; padding: 5px 0; color: <?= $is_active ? 'var(--primary-color); font-weight: bold;' : 'var(--text-color);' ?>">
+                        📄 <?= htmlspecialchars($item['title']) ?>
+                    </a>
+                </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+    <?php
+    return ob_get_clean();
+}
 ?>

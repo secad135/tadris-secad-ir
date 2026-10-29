@@ -483,3 +483,49 @@ body {
 .theme-toggle-btn:hover {
     background: var(--border-color);
 }
+/* مخفی کردن لیست دروس موبایل در دسکتاپ */
+.mobile-lessons-container {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* ۱. مخفی کردن سایدبار در موبایل */
+    .sidebar {
+        display: none !important; 
+    }
+
+    /* ۲. نمایش لیست دروس در منوی موبایل */
+    .mobile-lessons-container {
+        display: block;
+        width: 100%;
+    }
+
+    /* ۳. اصلاح منوی اصلی در موبایل */
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        max-height: calc(100vh - 60px); /* نهایت ارتفاع صفحه */
+        overflow-y: auto; /* اسکرول پذیر شود */
+        background-color: var(--nav-bg);
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 1000;
+        align-items: flex-start;
+    }
+
+    /* فاصله‌گذاری بین آیتم‌های منوی اصلی */
+    .nav-links > li {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .nav-links > li > a {
+        display: block;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+}

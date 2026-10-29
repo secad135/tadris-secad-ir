@@ -25,18 +25,13 @@ require_once __DIR__ . '/../app/functions.php';
 <body>
 
     <!-- نوار بالا -->
-            <nav class="navbar">
-        <a href="index.php" class="navbar-brand">تدریس سکاد</a>
+               <nav class="navbar">
+        <a href="index.php" class="navbar-brand">سکاد</a>
         
         <div class="navbar-actions">
-            <?php if(isset($show_sidebar_toggle) && $show_sidebar_toggle): ?>
-                <button class="btn-sidebar-toggle" id="sidebarToggle">☰ دروس</button>
-            <?php endif; ?>
-            
             <!-- دکمه تغییر پوسته -->
             <button id="themeToggle" class="theme-toggle-btn" title="تغییر حالت تاریک/روشن">🌙</button>
-
-            <!-- دکمه منوی موبایل -->
+            <!-- تنها دکمه منو -->
             <button class="menu-toggle" id="menuToggle">☰</button>
         </div>
         
@@ -44,5 +39,14 @@ require_once __DIR__ . '/../app/functions.php';
             <li><a href="index.php">صفحه اصلی</a></li>
             <li><a href="courses.php">دوره‌ها</a></li>
             <li><a href="https://tamrin.secad.ir" target="_blank">تمرینات</a></li>
+            
+            <!-- لیست دروس در منوی موبایل -->
+            <?php if(isset($structure) && !empty($structure)): ?>
+                <li class="mobile-lessons-container">
+                    <div style="border-top: 1px solid var(--border-color); margin: 15px 0;"></div>
+                    <h3 style="margin-bottom: 15px; color: var(--primary-color); font-size: 1.1rem;">فهرست دروس این دوره</h3>
+                    <?= render_lesson_tree($structure, $course_slug, $lesson_file) ?>
+                </li>
+            <?php endif; ?>
         </ul>
     </nav>
