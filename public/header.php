@@ -7,7 +7,7 @@ require_once __DIR__ . '/../app/functions.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= isset($page_title) ? htmlspecialchars($page_title) . ' | ' : '' ?>سامانه آموزشی سکاد</title>
+    <title><?= isset($page_title) ? htmlspecialchars($page_title) . ' | ' : '' ?> تدریس SECAD.ir </title>
 
         <script>
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -26,7 +26,7 @@ require_once __DIR__ . '/../app/functions.php';
 
     <!-- نوار بالا -->
                <nav class="navbar">
-        <a href="index.php" class="navbar-brand">سکاد</a>
+        <a href="index.php" class="navbar-brand">تدریس SECAD.ir</a>
         
         <div class="navbar-actions">
             <!-- دکمه تغییر پوسته -->
