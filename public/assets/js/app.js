@@ -68,4 +68,41 @@ document.addEventListener('DOMContentLoaded', () => {
             arrow.textContent = '▶';
         }
     };
+        // --- منطق دکمه کپی کدها ---
+    const preBlocks = document.querySelectorAll('.content-area pre');
+    
+    preBlocks.forEach((pre) => {
+        // ساخت دکمه
+        const btn = document.createElement('button');
+        btn.className = 'copy-code-btn';
+        btn.innerText = 'کپی';
+        
+        // اضافه کردن رویداد کلیک به دکمه
+        btn.addEventListener('click', () => {
+            // پیدا کردن تگ code داخل pre
+            const codeElement = pre.querySelector('code');
+            if (codeElement) {
+                const codeText = codeElement.innerText;
+                
+                // کپی کردن متن در حافظه (Clipboard API)
+                navigator.clipboard.writeText(codeText).then(() => {
+                    // تغییر متن دکمه برای نشان دادن موفقیت
+                    btn.innerText = 'کپی شد!';
+                    btn.classList.add('copied');
+                    
+                    // برگرداندن دکمه به حالت اولیه بعد از ۲ ثانیه
+                    setTimeout(() => {
+                        btn.innerText = 'کپی';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('خطا در کپی کردن: ', err);
+                    btn.innerText = 'خطا';
+                });
+            }
+        });
+        
+        // اضافه کردن دکمه به داخل بلوک کد
+        pre.appendChild(btn);
+    });
 });

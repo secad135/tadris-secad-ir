@@ -464,3 +464,40 @@ body {
     padding-right: 0.8em;
     text-align: right;
 }
+
+/* ==========================================
+   استایل دکمه کپی کد
+   ========================================== */
+
+/* موقعیت‌دهی نسبی برای بلوک کد تا دکمه داخل آن قرار بگیرد */
+.content-area pre {
+    position: relative;
+}
+
+/* استایل خود دکمه */
+.copy-code-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px; /* چون کدها چپ‌چین هستند، دکمه در بالای سمت چپ قرار می‌گیرد */
+    background: rgba(255, 255, 255, 0.1);
+    color: #a3a3a3;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-family: 'Vazirmatn', sans-serif;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.copy-code-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.copy-code-btn.copied {
+    background: #10b981; /* رنگ سبز برای تایید */
+    color: white;
+    border-color: #10b981;
+}
