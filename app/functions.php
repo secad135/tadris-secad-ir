@@ -127,6 +127,9 @@ function get_course_structure($course_slug) {
 /**
  * تولید کدهای HTML برای نمایش درخت دروس
  */
+/**
+ * تولید کدهای HTML برای نمایش درخت دروس
+ */
 function render_lesson_tree($structure, $course_slug, $lesson_file) {
     ob_start();
     ?>
@@ -139,12 +142,19 @@ function render_lesson_tree($structure, $course_slug, $lesson_file) {
         
         <?php foreach($structure as $item): ?>
             <?php if($item['type'] === 'dir'): ?>
+                <?php 
+                    // بررسی اینکه آیا درس فعلی داخل این پوشه قرار دارد یا خیر
+                    $is_folder_active = ($lesson_file && strpos($lesson_file, $item['name'] . '/') === 0);
+                ?>
                 <li style="margin-bottom: 10px; margin-top: 15px;">
-                    <span style="font-weight: bold; color: var(--text-color); display: block; border-bottom: 1px solid var(--border-color); padding-bottom: 5px;">
-                        <!-- استفاده از نام نمایشی (اگر نبود، نام پوشه) -->
+                    <!-- عنوان پوشه (کلیک‌پذیر) -->
+                    <div class="folder-header" onclick="toggleFolder(this)">
+                        <span class="folder-arrow"><?= $is_folder_active ? '▼' : '▶' ?></span>
                         📁 <?= htmlspecialchars($item['display_name'] ?? $item['name']) ?>
-                    </span>
-                    <ul style="list-style: none; padding-right: 15px; margin-top: 5px;">
+                    </div>
+                    
+                    <!-- محتویات پوشه -->
+                    <ul class="folder-content" style="list-style: none; padding-right: 15px; margin-top: 5px; display: <?= $is_folder_active ? 'block' : 'none' ?>;">
                         <?php foreach($item['files'] as $file): ?>
                             <?php $is_active = ($lesson_file === $file['path']); ?>
                             <li style="margin-bottom: 8px;">

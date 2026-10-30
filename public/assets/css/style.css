@@ -529,3 +529,31 @@ body {
         border-bottom: 1px solid var(--border-color);
     }
 }
+
+/* ==========================================
+   استایل پوشه‌های بازشونده در فهرست دروس
+   ========================================== */
+.folder-header {
+    font-weight: bold;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    user-select: none; /* جلوگیری از انتخاب شدن متن هنگام کلیک سریع */
+    transition: color 0.2s;
+}
+
+.folder-header:hover {
+    color: var(--primary-color);
+}
+
+.folder-arrow {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    display: inline-block;
+    width: 15px;
+    text-align: center;
+}

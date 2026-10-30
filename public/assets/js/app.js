@@ -53,4 +53,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+        // --- منطق باز و بسته شدن پوشه‌های دروس ---
+    window.toggleFolder = function(element) {
+        // پیدا کردن لیست محتویات پوشه که بعد از عنوان قرار دارد
+        const content = element.nextElementSibling;
+        // پیدا کردن فلش
+        const arrow = element.querySelector('.folder-arrow');
+
+        if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'block';
+            arrow.textContent = '▼';
+        } else {
+            content.style.display = 'none';
+            arrow.textContent = '▶';
+        }
+    };
 });
