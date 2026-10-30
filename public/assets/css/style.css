@@ -215,7 +215,7 @@ body {
     color: var(--text-color);
 }
 
-.content-area pre {
+/* .content-area pre {
     background-color: #1e293b !important;
     color: #e2e8f0 !important;
     padding: 20px;
@@ -227,14 +227,14 @@ body {
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 0.9rem;
     line-height: 1.5;
-}
+} */
 
-.content-area pre code {
+/* .content-area pre code {
     background: transparent !important;
     color: inherit !important;
     padding: 0;
     font-family: inherit;
-}
+} */
 
 .content-area code:not(pre code) {
     background-color: #f1f5f9;
@@ -400,4 +400,67 @@ body {
     .content-area h1 { font-size: 1.5rem; }
     .content-area h2 { font-size: 1.3rem; }
     .content-area h3 { font-size: 1.1rem; }
+}
+
+/* ==========================================
+   اصلاحات نهایی Prism.js برای VS Code & RTL
+   ========================================== */
+
+.content-area pre {
+    direction: ltr !important; 
+    text-align: left !important;
+    background-color: #1e1e1e !important; /* پس‌زمینه VS Code */
+    color: #d4d4d4 !important;
+    padding: 20px !important;
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border: 1px solid #333;
+}
+
+.content-area pre code {
+    background: transparent !important;
+    color: inherit !important;
+    padding: 0 !important;
+    font-family: inherit;
+}
+
+/* استایل شماره خطوط */
+.content-area pre.line-numbers {
+    position: relative;
+    padding-left: 3.8em !important;
+    counter-reset: linenumber;
+}
+
+.content-area pre.line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em;
+    letter-spacing: -1px;
+    border-right: 1px solid #4b5563;
+    user-select: none;
+}
+
+.line-numbers-rows > span {
+    display: block;
+    counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+    content: counter(linenumber);
+    color: #858585; /* رنگ خاکستری شماره خطوط */
+    display: block;
+    padding-right: 0.8em;
+    text-align: right;
 }
