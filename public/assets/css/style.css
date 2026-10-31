@@ -202,8 +202,14 @@ body {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
+/* هاور روی ردیف‌ها در حالت روشن */
 .content-area table tr:hover {
-    background-color: rgba(37, 99, 235, 0.1);
+    background-color: rgba(37, 99, 235, 0.1) !important; 
+}
+
+/* هاور روی ردیف‌ها در حالت تاریک (اولویت بالاتر برای غلبه بر رنگ ردیف‌های زوج) */
+[data-theme="dark"] .content-area table tr:hover {
+    background-color: rgba(96, 165, 250, 0.2) !important; 
 }
 
 .content-area blockquote {
