@@ -105,4 +105,31 @@ document.addEventListener('DOMContentLoaded', () => {
         // اضافه کردن دکمه به داخل بلوک کد
         pre.appendChild(btn);
     });
+        // --- انیمیشن پس‌زمینه کدنویسی ---
+    const bgContainer = document.getElementById('code-background');
+    if (bgContainer) {
+        const symbols = ['php?>', '</>', 'echo', 'while', 'if', 'array', 'and', '$', '++', 'or', '=='];
+        const numSymbols = 10; // تعداد نمادها در پس‌زمینه
+
+        for (let i = 0; i < numSymbols; i++) {
+            const span = document.createElement('span');
+            span.className = 'code-symbol';
+            // انتخاب یک نماد تصادفی
+            span.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            // موقعیت افقی تصادفی
+            span.style.left = Math.random() * 100 + '%';
+            
+            // اندازه فونت تصادفی (بین 20 تا 50 پیکسل)
+            span.style.fontSize = (Math.random() * 30 + 20) + 'px';
+            
+            // سرعت انیمیشن تصادفی (بین 15 تا 40 ثانیه)
+            span.style.animationDuration = (Math.random() * 25 + 15) + 's';
+            
+            // تاخیر اولیه تصادفی برای اینکه همه با هم شروع نشوند
+            span.style.animationDelay = '-' + (Math.random() * 20) + 's';
+            
+            bgContainer.appendChild(span);
+        }
+    }
 });

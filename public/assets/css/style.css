@@ -507,3 +507,328 @@ body {
     color: white;
     border-color: #10b981;
 }
+
+/* ==========================================
+   استایل‌های صفحه اصلی (Landing Page)
+   ========================================== */
+
+/* استایل دکمه‌های اصلی */
+.hero-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+}
+
+.primary-btn:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.secondary-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.outline-btn {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 2px dashed var(--border-color);
+}
+
+.outline-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* استایل کارت‌های ویژگی */
+.feature-card {
+    background-color: var(--card-bg);
+    padding: 30px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+    border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .feature-card:hover {
+    box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+}
+
+/* اصلاح فاصله‌ها در موبایل */
+@media (max-width: 768px) {
+    .hero-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* ==========================================
+   استایل‌های صفحه اصلی (Landing Page) - نسخه فشرده
+   ========================================== */
+
+/* کانتینر اصلی که کل صفحه را پر می‌کند */
+.landing-container {
+    height: calc(100vh - 60px); /* کم کردن ارتفاع منوی بالا */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1; /* بالاتر از پس‌زمینه انیمیشن */
+    overflow: hidden; /* جلوگیری از اسکرول */
+}
+
+/* شبکه دو ستونی */
+.landing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* بخش معرفی (راست) */
+.hero-section {
+    text-align: right;
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.hero-logo {
+    width: 110px;
+    height: 110px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    border: 3px solid var(--card-bg);
+    object-fit: cover;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    /* افکت گرادیانت برای متن */
+    background: linear-gradient(45deg, var(--primary-color), #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* دکمه‌ها */
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+.secondary-btn {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.secondary-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.outline-btn {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 2px dashed var(--border-color);
+}
+
+.outline-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* بخش کارت‌ها (چپ) */
+.features-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feature-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(var(--card-bg-rgb, 255, 255, 255), 0.6); /* افکت شیشه‌ای */
+    backdrop-filter: blur(10px);
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme="dark"] .feature-card {
+    background: rgba(31, 41, 55, 0.6); /* پس‌زمینه شیشه‌ای تیره */
+}
+
+.feature-card:hover {
+    transform: translateX(-10px); /* حرکت به سمت چپ هنگام هاور */
+    border-color: var(--primary-color);
+}
+
+.feature-icon {
+    font-size: 2rem;
+}
+
+.feature-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.feature-card p {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin: 0;
+}
+
+/* فوتر کوچک */
+.landing-footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    opacity: 0.6;
+    padding-top: 10px;
+}
+
+.landing-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ==========================================
+   انیمیشن پس‌زمینه کدنویسی
+   ========================================== */
+#code-background {
+    position: absolute;
+    top: 60px; /* زیر منو */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none; /* تا روی دکمه‌ها کلیک نشود */
+}
+
+.code-symbol {
+    position: absolute;
+    color: var(--primary-color);
+    opacity: 0.05; /* بسیار کم‌رنگ */
+    font-family: monospace;
+    font-weight: bold;
+    animation: floatUp linear infinite;
+    user-select: none;
+}
+
+[data-theme="dark"] .code-symbol {
+    opacity: 0.08; /* کمی پررنگ‌تر در حالت تاریک */
+    color: #60a5fa;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh) rotate(0deg); }
+    100% { transform: translateY(-100px) rotate(360deg); }
+}
+
+/* ==========================================
+   ریسپانسیو برای موبایل (بازگشت به حالت تک‌ستونی و اسکرول)
+   ========================================== */
+@media (max-width: 900px) {
+    .landing-container {
+        height: auto;
+        min-height: calc(100vh - 60px);
+        padding: 30px 20px;
+        overflow: visible;
+    }
+    
+    .landing-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .hero-section {
+        text-align: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px); /* تغییر افکت هاور در موبایل */
+    }
+    
+    .hero-title { font-size: 2rem; }
+}
