@@ -603,7 +603,15 @@ body {
     position: relative;
     z-index: 1; /* بالاتر از پس‌زمینه انیمیشن */
     overflow: hidden; /* جلوگیری از اسکرول */
+ 
+    
+    /* غیرفعال کردن انتخاب متن در صفحه اصلی */
+    -webkit-user-select: none; 
+    -moz-user-select: none;    
+    -ms-user-select: none;     
+    user-select: none;         
 }
+
 
 /* شبکه دو ستونی */
 .landing-grid {

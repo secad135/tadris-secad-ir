@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- انیمیشن پس‌زمینه کدنویسی ---
     const bgContainer = document.getElementById('code-background');
     if (bgContainer) {
-        const symbols = ['php?>', '</>', 'echo', 'while', 'if', 'array', 'and', '$', '++', 'or', '=='];
+        const symbols = ['php?>', '</>', 'echo', 'while', 'if', 'array', 'and', '$', '++', 'or', 'function'];
         const numSymbols = 10; // تعداد نمادها در پس‌زمینه
 
         for (let i = 0; i < numSymbols; i++) {
