@@ -56,9 +56,9 @@ require_once __DIR__ . '/header.php';
             </div>
         </div>
 
-    </div>
+    </div> <!-- بسته شدن landing-grid -->
 
-    <!-- فوتر کوچک صفحه اصلی -->
+    <!-- فوتر کوچک و لینک گیت‌هاب -->
     <div class="landing-footer">
         <div style="display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
             
@@ -75,7 +75,8 @@ require_once __DIR__ . '/header.php';
             </a>
 
         </div>
-    </div>
-</div>
+    </div> <!-- بسته شدن landing-footer -->
+
+</div> <!-- بسته شدن landing-container -->
 
 <?php require_once __DIR__ . '/footer.php'; ?>
