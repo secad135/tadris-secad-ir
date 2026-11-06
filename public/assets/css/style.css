@@ -127,6 +127,7 @@ body {
 
 .sidebar {
     width: var(--sidebar-width);
+    flex-shrink: 0;
     background-color: var(--card-bg);
     border-left: 1px solid var(--border-color);
     padding: 20px;
@@ -142,6 +143,30 @@ body {
 .sidebar > * {
     direction: rtl; 
 }
+
+.sidebar[hidden], .sidebar-toggle-btn[hidden] {
+    display: none;
+}
+
+.sidebar-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+    margin-bottom: 16px;
+    padding: 9px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.sidebar-toggle-btn svg { flex-shrink: 0; }
+.sidebar-toggle-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
+.sidebar-toggle-btn:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 3px; }
 
 .sidebar::-webkit-scrollbar { width: 6px; }
 .sidebar::-webkit-scrollbar-track { background: transparent; }
@@ -293,55 +318,113 @@ body {
 /* ==========================================
    بلوک‌های کد و دکمه کپی
    ========================================== */
+/* VS Code inspired dark editor, independent of the surrounding page theme. */
 .content-area pre {
-    position: relative;
-    direction: ltr !important; 
-    text-align: left !important;
-    background-color: #1e1e1e !important;
-    color: #d4d4d4 !important;
-    padding: 20px !important;
+    direction: ltr;
+    text-align: left;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 16px;
     border-radius: 8px;
     margin: 20px 0;
     overflow-x: auto;
-    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    border: 1px solid #333;
+    font: 0.9rem/1.7 'Cascadia Code', Consolas, Monaco, 'Courier New', monospace;
+    tab-size: 4;
+    white-space: pre;
 }
-
 .content-area pre code {
-    background: transparent !important;
-    color: inherit !important;
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font: inherit;
+    white-space: inherit;
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+.content-area .code-viewer {
     padding: 0 !important;
-    font-family: inherit;
+    margin: 24px 0;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    border: 1px solid #414141;
+    border-radius: 10px;
+    background: #1e1e1e;
 }
-
+.code-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    direction: ltr;
+    padding: 9px 14px;
+    background: #252526;
+    border-bottom: 1px solid #383838;
+}
+.code-language {
+    color: #cccccc;
+    font: 0.78rem Consolas, Monaco, monospace;
+    letter-spacing: 0.03em;
+}
+.content-area .code-viewer pre {
+    display: flex;
+    align-items: stretch;
+    margin: 0;
+    padding: 14px 0;
+    border: 0;
+    border-radius: 0;
+}
+.code-viewer pre code {
+    display: block;
+    flex: 1 0 auto;
+    padding: 0 18px !important;
+}
+.code-line-numbers {
+    position: sticky;
+    left: 0;
+    flex: 0 0 auto;
+    min-width: 3.5em;
+    padding: 0 12px;
+    border-right: 1px solid #383838;
+    background: #1e1e1e;
+    color: #858585;
+    text-align: right;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.code-line-numbers span { display: block; }
 .copy-code-btn {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    color: #a3a3a3;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    padding: 4px 8px;
-    font-size: 0.75rem;
+    background: #333333;
+    color: #dddddd;
+    border: 1px solid #555555;
+    border-radius: 5px;
+    padding: 4px 10px;
+    font: 0.75rem 'Vazirmatn', sans-serif;
     cursor: pointer;
-    font-family: 'Vazirmatn', sans-serif;
-    transition: all 0.2s ease;
-    z-index: 10;
+    direction: rtl;
 }
-
-.copy-code-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
+.copy-code-btn:hover { background: #454545; color: #ffffff; }
+.copy-code-btn.copied { background: #166534; color: #ffffff; border-color: #22863a; }
+.copy-code-btn:focus-visible, .code-viewer pre:focus-visible {
+    outline: 2px solid #75beff;
+    outline-offset: -2px;
 }
-
-.copy-code-btn.copied {
-    background: #10b981;
-    color: white;
-    border-color: #10b981;
-}
+.code-viewer code::selection, .code-viewer code *::selection { background: #264f78; }
+.code-viewer .token.comment, .code-viewer .token.prolog,
+.code-viewer .token.doctype, .code-viewer .token.cdata { color: #6a9955; }
+.code-viewer .token.punctuation { color: #d4d4d4; }
+.code-viewer .token.keyword, .code-viewer .token.tag,
+.code-viewer .token.boolean { color: #569cd6; }
+.code-viewer .token.string, .code-viewer .token.attr-value { color: #ce9178; }
+.code-viewer .token.number { color: #b5cea8; }
+.code-viewer .token.function { color: #dcdcaa; }
+.code-viewer .token.variable, .code-viewer .token.property,
+.code-viewer .token.attr-name { color: #9cdcfe; }
+.code-viewer .token.class-name, .code-viewer .token.builtin { color: #4ec9b0; }
+.code-viewer .token.operator, .code-viewer .token.entity { color: #d4d4d4; }
+.code-viewer .token.regex, .code-viewer .token.important { color: #d16969; }
+.code-viewer .token.constant, .code-viewer .token.symbol { color: #4fc1ff; }
+.code-viewer .token.selector { color: #d7ba7d; }
 
 /* ==========================================
    استایل‌های صفحه اصلی (Landing Page)
@@ -580,6 +663,7 @@ body {
 
 @media (max-width: 768px) {
     .menu-toggle { display: block; }
+    .sidebar-toggle-btn { display: none; }
     .sidebar { display: none !important; }
     .mobile-lessons-container { display: block; width: 100%; }
     
