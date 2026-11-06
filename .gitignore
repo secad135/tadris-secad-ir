@@ -9,3 +9,5 @@ config/config.php
 
 # Logs & Caches
 *.log
+
+public/test.php
