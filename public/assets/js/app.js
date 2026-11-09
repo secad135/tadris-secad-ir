@@ -18,9 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const setSidebarCollapsed = (collapsed) => {
             sidebar.hidden = collapsed;
             sidebarToggle.setAttribute('aria-expanded', String(!collapsed));
-            sidebarToggle.querySelector('span').textContent = collapsed
+            const label = collapsed
                 ? 'نمایش فهرست دروس'
                 : 'پنهان کردن فهرست دروس';
+            sidebarToggle.setAttribute('aria-label', label);
+            sidebarToggle.title = label;
         };
 
         let collapsed = false;

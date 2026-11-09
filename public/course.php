@@ -70,12 +70,11 @@ require_once __DIR__ . '/header.php';
 
     <!-- محتوای اصلی -->
     <main class="content-area">
-        <button type="button" id="sidebarToggle" class="sidebar-toggle-btn" aria-controls="courseSidebar" aria-expanded="true" hidden>
+        <button type="button" id="sidebarToggle" class="sidebar-toggle-btn" aria-controls="courseSidebar" aria-expanded="true" aria-label="پنهان کردن فهرست دروس" title="پنهان کردن فهرست دروس" hidden>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" focusable="false">
                 <rect x="3" y="4" width="18" height="16" rx="2" />
                 <path d="M15 4v16M18 8h1M18 12h1M18 16h1" />
             </svg>
-            <span>پنهان کردن فهرست دروس</span>
         </button>
         <div style="background: var(--card-bg); padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); min-height: 500px; border: 1px solid var(--border-color);">
             <?= $content_html ?>
