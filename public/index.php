@@ -9,18 +9,24 @@ require_once __DIR__ . '/header.php';
 
 <div class="landing-container">
     <div class="landing-grid">
-        
+
         <!-- ستون راست: معرفی و دکمه‌ها -->
         <div class="hero-section">
             <div class="logo-container">
                 <img src="assets/images/logo.png" alt="لوگوی سجاد اسماعیلی" class="hero-logo">
             </div>
-            
-            <h1 class="hero-title">مهندس سجاد اسماعیلی</h1>
+
+            <h1 class="hero-title">تدریس SECAD.ir</h1>
             <h2 class="hero-subtitle">
-                برنامه‌نویس و توسعه‌دهنده وب اپلیکیشن<br>
-                هنرآموز رسمی آموزش و پرورش
+                سامانه جزوات و منابع درسی
+                <br>
+                و ارائه کدهای آموزشی و نمونه سوالات امتحانی
+                <br>
+                مهندس سجاد اسماعیلی
             </h2>
+            <p>
+                آموزش پرورش خراسان رضوی. شهرستان درگز. هنرستان خورشید کوزه کنانی
+            </p>
 
             <div class="hero-buttons">
                 <a href="courses.php" class="hero-btn primary-btn">📚 ورود به دوره‌ها</a>
@@ -61,11 +67,11 @@ require_once __DIR__ . '/header.php';
     <!-- فوتر کوچک و لینک گیت‌هاب -->
     <div class="landing-footer">
         <div style="display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
-            
+
             <p style="margin: 0;">این سامانه زیرمجموعه‌ای از وب‌سایت <a href="https://secad.ir" target="_blank">SECAD.ir</a> می‌باشد.</p>
-            
+
             <span style="color: var(--border-color);">|</span>
-            
+
             <!-- لینک و آیکون گیت‌هاب -->
             <a href="https://github.com/secad135/tadris-secad-ir/tree/main" target="_blank" rel="noopener noreferrer" style="color: var(--text-color); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">
                 <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor" style="vertical-align: middle;">
