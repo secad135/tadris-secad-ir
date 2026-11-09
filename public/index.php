@@ -1,6 +1,6 @@
 <?php
 // public/index.php
-$page_title = "صفحه اصلی";
+$page_title = "";
 require_once __DIR__ . '/header.php';
 ?>
 
