@@ -1,0 +1,655 @@
+# توابع پیش‌ساخته — بخش اول: رشته‌ها و ریاضی
+
+## ۱. مفهوم توابع پیش‌ساخته (Built-in Functions)
+
+**توابع پیش‌ساخته** یا **توابع داخلی**، توابعی هستند که از پیش در خود PHP تعریف شده‌اند و بدون نیاز به تعریف مجدد، در هر جای برنامه قابل استفاده‌اند. PHP بیش از هزار تابع پیش‌ساخته دارد که برای انجام وظایف رایج برنامه‌نویسی طراحی شده‌اند.
+
+**مزایای استفاده از توابع پیش‌ساخته:**
+
+- **صرفه‌جویی در زمان:** نیازی به نوشتن منطق از صفر نیست.
+- **کارایی بالا:** این توابع در سطح هستهٔ PHP (عمدتاً به زبان C) پیاده‌سازی شده‌اند و بسیار سریع‌تر از پیاده‌سازی معادل در PHP خالص عمل می‌کنند.
+- **قابلیت اطمینان:** بارها آزموده شده‌اند و رفتارشان مستند و قابل پیش‌بینی است.
+- **خوانایی:** نام توابع استاندارد و قابل فهم‌اند.
+
+**دسته‌بندی کلی توابع پیش‌ساخته:**
+
+| دسته | نمونه |
+|------|--------|
+| رشته‌ها (String) | `strlen`, `strtoupper`, `substr`, `str_replace` |
+| ریاضی (Math) | `abs`, `sqrt`, `pow`, `rand`, `round` |
+| آرایه‌ها (Array) | `count`, `array_push`, `array_sum`, `in_array` |
+| تاریخ و زمان (Date/Time) | `date`, `time`, `strtotime` |
+| فایل (File System) | `file_exists`, `file_get_contents` |
+
+در این بخش، توابع **رشته‌ای** و **ریاضی** بررسی می‌شوند و دو دستهٔ دیگر در بخش بعدی ارائه می‌گردند.
+
+> **نکته:** برای مشاهدهٔ مستندات رسمی هر تابع، می‌توانید به سایت `php.net` مراجعه کنید. نام تابع را در بخش جستجو وارد کنید تا امضای تابع، پارامترها، مقدار بازگشتی و مثال‌ها را ببینید.
+
+---
+
+## ۲. توابع رشته‌ای پرکاربرد
+
+### ۲-۱. تابع strlen()
+
+**هدف:** محاسبهٔ طول یک رشته (تعداد کاراکترها).
+
+**امضا:**
+```php
+strlen(string $string): int
+```
+
+**مثال:**
+```php
+<?php
+$name = "Ali";
+echo strlen($name);   // 3
+
+echo "<br>";
+$message = "Hello World";
+echo strlen($message);   // 11 (فاصله هم کاراکتر است)
+?>
+```
+
+> **نکته:** `strlen` تعداد **بایت** را برمی‌گرداند، نه تعداد کاراکترهای یونیکد. برای رشته‌های فارسی یا چندبایتی، از `mb_strlen` استفاده کنید.
+
+---
+
+### ۲-۲. تابع strtoupper()
+
+**هدف:** تبدیل همهٔ حروف رشته به **حروف بزرگ**.
+
+**امضا:**
+```php
+strtoupper(string $string): string
+```
+
+**مثال:**
+```php
+<?php
+$name = "Ali Reza";
+echo strtoupper($name);   // ALI REZA
+?>
+```
+
+---
+
+### ۲-۳. تابع strtolower()
+
+**هدف:** تبدیل همهٔ حروف رشته به **حروف کوچک**.
+
+**امضا:**
+```php
+strtolower(string $string): string
+```
+
+**مثال:**
+```php
+<?php
+$name = "ALI REZA";
+echo strtolower($name);   // ali reza
+?>
+```
+
+**کاربرد عملی:** نرمال‌سازی ورودی برای مقایسهٔ حساس‌نبودن به حروف بزرگ و کوچک.
+
+```php
+<?php
+function isPassed($status) {
+    return strtolower($status) === "passed";
+}
+
+echo isPassed("Passed") ? "Yes" : "No";   // Yes
+echo "<br>";
+echo isPassed("PASSED") ? "Yes" : "No";   // Yes
+?>
+```
+
+---
+
+### ۲-۴. تابع substr()
+
+**هدف:** استخراج بخشی از یک رشته.
+
+**امضا:**
+```php
+substr(string $string, int $offset, ?int $length = null): string
+```
+
+- `$offset`: نقطهٔ شروع (از صفر). اگر منفی باشد، از انتهای رشته شمرده می‌شود.
+- `$length`: تعداد کاراکترها. اگر حذف شود، تا انتهای رشته استخراج می‌شود. اگر منفی باشد، از انتهای رشته کنار گذاشته می‌شود.
+
+**مثال:**
+```php
+<?php
+$code = "STU-101";
+echo substr($code, 0, 3);    // STU
+echo "<br>";
+echo substr($code, 4);       // 101
+echo "<br>";
+echo substr($code, -3);      // 101
+?>
+```
+
+**کاربرد عملی:** استخراج شناسهٔ دانش‌آموز از کد.
+
+```php
+<?php
+$studentCode = "S101";
+$id = substr($studentCode, 1);
+echo "Student ID: " . $id;   // Student ID: 101
+?>
+```
+
+---
+
+### ۲-۵. تابع str_replace()
+
+**هدف:** جستجو و جایگزینی همهٔ occurrences یک رشته با رشته‌ای دیگر.
+
+**امضا:**
+```php
+str_replace(array|string $search, array|string $replace, string|array $subject): string|array
+```
+
+**مثال:**
+```php
+<?php
+$text = "Hello Ali, Hello Sara";
+echo str_replace("Hello", "Hi", $text);
+// Hi Ali, Hi Sara
+?>
+```
+
+**کاربرد عملی:** حذف یا جایگزینی بخشی از پیام.
+
+```php
+<?php
+$message = "Score: {score}";
+echo str_replace("{score}", "18", $message);   // Score: 18
+?>
+```
+
+---
+
+## ۳. مثال ۱: تشخیص قبولی/مردودی با کمک توابع رشته‌ای
+
+در این مثال، وضعیت قبولی دانش‌آموزان در یک آرایهٔ دوبعدی انجمنی نگهداری می‌شود و با توابع رشته‌ای، گزارش مرتبی تولید می‌کنیم.
+
+```php
+<?php
+$students = [
+    "s101" => ["name" => "Ali",  "score" => 18],
+    "s102" => ["name" => "Sara", "score" => 9],
+    "s103" => ["name" => "Reza", "score" => 12]
+];
+
+function getStatus($score, $limit = 10) {
+    return ($score >= $limit) ? "passed" : "failed";
+}
+
+function buildReport($list, $limit = 10) {
+    foreach ($list as $id => $student) {
+        $name = strtoupper($student["name"]);
+        $status = getStatus($student["score"], $limit);
+        $status = strtoupper($status);
+        $line = $id . " | " . $name . " | " . $student["score"] . " | " . $status;
+        echo $line . "<br>";
+    }
+}
+
+buildReport($students);
+?>
+```
+
+**خروجی:**
+```
+s101 | ALI | 18 | PASSED
+s102 | SARA | 9 | FAILED
+s103 | REZA | 12 | PASSED
+```
+
+**تحلیل:**
+- `strtoupper` نام و وضعیت را برای نمایش یکدست به حروف بزرگ تبدیل می‌کند.
+- `strtolower` در `isPassed` (مثال قبل) امکان مقایسهٔ حساس‌نبودن را فراهم می‌آورد.
+- توابع رشته‌ای، خروجی گزارش را استاندارد و خوانا می‌کنند.
+
+---
+
+## ۴. توابع ریاضی پرکاربرد
+
+### ۴-۱. تابع abs()
+
+**هدف:** محاسبهٔ قدر مطلق (مقدار بدون علامت) یک عدد.
+
+**امضا:**
+```php
+abs(int|float $num): int|float
+```
+
+**مثال:**
+```php
+<?php
+echo abs(-5);    // 5
+echo "<br>";
+echo abs(3);     // 3
+echo "<br>";
+echo abs(-2.7);  // 2.7
+?>
+```
+
+**کاربرد عملی:** محاسبهٔ اختلاف نمره از حد قبولی، مستقل از جهت.
+
+```php
+<?php
+function distanceFromPassMark($score, $limit = 10) {
+    return abs($score - $limit);
+}
+
+echo distanceFromPassMark(7);    // 3
+echo "<br>";
+echo distanceFromPassMark(13);   // 3
+?>
+```
+
+---
+
+### ۴-۲. تابع sqrt()
+
+**هدف:** محاسبهٔ جذر (ریشهٔ دوم) یک عدد.
+
+**امضا:**
+```php
+sqrt(float $num): float
+```
+
+**مثال:**
+```php
+<?php
+echo sqrt(16);    // 4
+echo "<br>";
+echo sqrt(2);     // 1.4142135623731
+?>
+```
+
+> **نکته:** ورودی منفی باعث برگرداندن `NAN` (Not a Number) می‌شود.
+
+---
+
+### ۴-۳. تابع pow()
+
+**هدف:** محاسبهٔ توان.
+
+**امضا:**
+```php
+pow(mixed $base, mixed $exp): int|float
+```
+
+**مثال:**
+```php
+<?php
+echo pow(2, 3);   // 8
+echo "<br>";
+echo pow(5, 2);   // 25
+echo "<br>";
+echo pow(2, 0.5); // 1.4142135623731 (همان جذر 2)
+?>
+```
+
+> **نکته:** در PHP از عملگر `**` نیز می‌توان برای توان استفاده کرد: `2 ** 3` معادل `pow(2, 3)` است.
+
+---
+
+### ۴-۴. تابع rand()
+
+**هدف:** تولید یک عدد صحیح تصادفی.
+
+**امضا:**
+```php
+rand(int $min = 0, int $max = PHP_INT_MAX): int
+```
+
+**مثال:**
+```php
+<?php
+echo rand(1, 6);     // عددی تصادفی بین 1 تا 6 (شبیه تاس)
+echo "<br>";
+echo rand(1, 100);   // عددی تصادفی بین 1 تا 100
+?>
+```
+
+**کاربرد عملی:** تولید شناسهٔ موقت یا انتخاب تصادفی.
+
+```php
+<?php
+$tempId = "TMP-" . rand(1000, 9999);
+echo $tempId;   // مثلاً TMP-4821
+?>
+```
+
+> **نکته:** برای کاربردهای امنیتی، `rand` مناسب نیست؛ از `random_int` استفاده کنید.
+
+---
+
+### ۴-۵. تابع round()
+
+**هدف:** گرد کردن عدد به نزدیک‌ترین مقدار صحیح یا با تعداد اعشار مشخص.
+
+**امضا:**
+```php
+round(float $num, int $precision = 0): float
+```
+
+- `$precision`: تعداد رقم اعشار. اگر منفی باشد، به سمت چپ نقطهٔ اعشار گرد می‌شود.
+
+**مثال:**
+```php
+<?php
+echo round(4.4);       // 4
+echo "<br>";
+echo round(4.6);       // 5
+echo "<br>";
+echo round(3.14159, 2); // 3.14
+echo "<br>";
+echo round(1234, -2);  // 1200
+?>
+```
+
+**کاربرد عملی:** گرد کردن معدل.
+
+```php
+<?php
+function average($scores) {
+    $total = 0;
+    foreach ($scores as $s) {
+        $total += $s;
+    }
+    return round($total / count($scores), 2);
+}
+
+echo average([15, 18, 12, 9, 20]);   // 14.8
+?>
+```
+
+---
+
+## ۵. مثال ۲: روزهای هفته با استفاده از توابع رشته‌ای
+
+در این مثال، نام روزهای هفته در یک آرایهٔ انجمنی نگهداری می‌شود و کاربر با عدد، روز مورد نظر را انتخاب می‌کند. با کمک `strtoupper` و `str_replace` خروجی را قالب‌بندی می‌کنیم.
+
+```php
+<?php
+$days = [
+    1 => "saturday",
+    2 => "sunday",
+    3 => "monday",
+    4 => "tuesday",
+    5 => "wednesday",
+    6 => "thursday",
+    7 => "friday"
+];
+
+function getDayName($days, $number, $fallback = "invalid") {
+    if (isset($days[$number])) {
+        return $days[$number];
+    }
+    return $fallback;
+}
+
+function formatDay($day) {
+    $upper = strtoupper($day);
+    $upper = str_replace("DAY", "DAY", $upper);
+    return $upper;
+}
+
+echo formatDay(getDayName($days, 1)) . "<br>";   // SATURDAY
+echo formatDay(getDayName($days, 5)) . "<br>";   // WEDNESDAY
+echo formatDay(getDayName($days, 9)) . "<br>";   // INVALID
+?>
+```
+
+**خروجی:**
+```
+SATURDAY
+WEDNESDAY
+INVALID
+```
+
+**تحلیل:**
+- داده‌ها با حروف کوچک ذخیره شده‌اند و در زمان نمایش با `strtoupper` به حروف بزرگ تبدیل می‌شوند.
+- `formatDay` یک لایهٔ قالب‌بندی است که در آینده می‌توان بدون تغییر منطق داده، قالب نمایش را عوض کرد.
+
+---
+
+## ۶. مثال ۳: ماه‌های شمسی با محاسبهٔ ریاضی
+
+در این مثال، عدد ماه شمسی را دریافت می‌کنیم و علاوه بر نام ماه، **فصل** آن را نیز با کمک تقسیم و `round` محاسبه می‌کنیم.
+
+```php
+<?php
+function getMonthInfo($monthNumber) {
+    $months = [
+        1 => "Farvardin", 2 => "Ordibehesht", 3 => "Khordad",
+        4 => "Tir",       5 => "Mordad",      6 => "Shahrivar",
+        7 => "Mehr",      8 => "Aban",        9 => "Azar",
+        10 => "Dey",      11 => "Bahman",     12 => "Esfand"
+    ];
+
+    if (!isset($months[$monthNumber])) {
+        return ["name" => "invalid", "season" => "unknown"];
+    }
+
+    $seasonNumber = (int) round($monthNumber / 3, 0, PHP_ROUND_HALF_UP);
+    $seasons = [
+        1 => "Spring",
+        2 => "Summer",
+        3 => "Autumn",
+        4 => "Winter"
+    ];
+
+    return [
+        "name"   => $months[$monthNumber],
+        "season" => $seasons[$seasonNumber]
+    ];
+}
+
+$info = getMonthInfo(1);
+echo $info["name"] . " - " . $info["season"] . "<br>";   // Farvardin - Spring
+
+$info = getMonthInfo(7);
+echo $info["name"] . " - " . $info["season"] . "<br>";   // Mehr - Autumn
+
+$info = getMonthInfo(12);
+echo $info["name"] . " - " . $info["season"] . "<br>";   // Esfand - Winter
+
+$info = getMonthInfo(15);
+echo $info["name"] . " - " . $info["season"] . "<br>";   // invalid - unknown
+?>
+```
+
+**خروجی:**
+```
+Farvardin - Spring
+Mehr - Autumn
+Esfand - Winter
+invalid - unknown
+```
+
+**تحلیل:**
+- محاسبهٔ فصل با تقسیم عدد ماه بر ۳ و `round` انجام شده است؛ ماه‌های ۱ تا ۳ بهار، ۴ تا ۶ تابستان، ۷ تا ۹ پاییز و ۱۰ تا ۱۲ زمستان‌اند.
+- تابع `round` با پارامتر `PHP_ROUND_HALF_UP` رفتار گرد کردن را صریحاً مشخص می‌کند.
+- خروجی تابع یک آرایهٔ انجمنی است تا دو مقدار (نام ماه و فصل) با هم بازگردانده شوند.
+
+---
+
+## ۷. مثال ۴: محاسبهٔ معدل با آرایهٔ دوبعدی انجمنی
+
+ترکیب توابع ریاضی و رشته‌ای برای محاسبه و نمایش معدل گروهی از دانش‌آموزان.
+
+```php
+<?php
+$students = [
+    "s101" => ["name" => "Ali",  "score" => 18],
+    "s102" => ["name" => "Sara", "score" => 9],
+    "s103" => ["name" => "Reza", "score" => 12],
+    "s104" => ["name" => "Mina", "score" => 7],
+    "s105" => ["name" => "Omid", "score" => 15]
+];
+
+function calculateAverage($list) {
+    $total = 0;
+    foreach ($list as $student) {
+        $total += $student["score"];
+    }
+    return round($total / count($list), 2);
+}
+
+function getStatus($score, $limit = 10) {
+    return ($score >= $limit) ? "PASSED" : "FAILED";
+}
+
+function printReport($list) {
+    foreach ($list as $id => $student) {
+        $line = strtoupper($student["name"]) . " | "
+              . $student["score"] . " | "
+              . getStatus($student["score"]);
+        echo $line . "<br>";
+    }
+}
+
+printReport($students);
+echo "<br>";
+echo "Average: " . calculateAverage($students);
+?>
+```
+
+**خروجی:**
+```
+ALI | 18 | PASSED
+SARA | 9 | FAILED
+REZA | 12 | PASSED
+MINA | 7 | FAILED
+OMID | 15 | PASSED
+
+Average: 12.2
+```
+
+**تحلیل:**
+- `calculateAverage` از `round` برای گرد کردن معدل به دو رقم اعشار استفاده می‌کند.
+- `getStatus` وضعیت را با حروف بزرگ برمی‌گرداند تا نیازی به `strtoupper` مجدد نباشد.
+- `printReport` نام را با `strtoupper` به حروف بزرگ تبدیل می‌کند و گزارش یکدستی می‌سازد.
+
+---
+
+## ۸. نکات کلیدی این بخش
+
+- توابع پیش‌ساخته در خود PHP تعریف شده‌اند و نیازی به تعریف مجدد ندارند.
+- `strlen` طول رشته را برمی‌گرداند (تعداد بایت؛ برای یونیکد از `mb_strlen` استفاده کنید).
+- `strtoupper` و `strtolower` برای یکدست‌سازی حروف به کار می‌روند.
+- `substr` بخشی از رشته را استخراج می‌کند و از اندیس صفر شروع می‌شود.
+- `str_replace` همهٔ occurrences یک رشته را جایگزین می‌کند.
+- `abs` قدر مطلق، `sqrt` جذر، `pow` توان و `**` عملگر توان است.
+- `rand` عدد تصادفی تولید می‌کند و برای کاربردهای امنیتی مناسب نیست.
+- `round` گرد کردن عدد را با تعداد اعشار مشخص انجام می‌دهد.
+- استفاده از توابع پیش‌ساخته، کد را کوتاه‌تر، سریع‌تر و قابل اطمینان‌تر می‌کند.
+
+---
+
+## تست‌های چهارگزینه‌ای
+
+**سؤال ۱.** خروجی `strlen("Hello")` چیست؟
+- الف) `4`
+- ب) `5`
+- ج) `6`
+- د) خطا
+
+**سؤال ۲.** خروجی `strtoupper("ali")` چیست؟
+- الف) `ali`
+- ب) `Ali`
+- ج) `ALI`
+- د) `aLi`
+
+**سؤال ۳.** خروجی `substr("STU-101", 4)` چیست؟
+- الف) `STU`
+- ب) `101`
+- ج) `-101`
+- د) `STU-`
+
+**سؤال ۴.** خروجی `str_replace("a", "b", "banana")` چیست؟
+- الف) `banana`
+- ب) `bbnbnb`
+- ج) `abnbnb`
+- د) `bbnana`
+
+**سؤال ۵.** خروجی `abs(-7)` چیست؟
+- الف) `-7`
+- ب) `7`
+- ج) `0`
+- د) `null`
+
+**سؤال ۶.** خروجی `pow(2, 4)` چیست؟
+- الف) `8`
+- ب) `16`
+- ج) `6`
+- د) `24`
+
+**سؤال ۷.** خروجی `round(3.14159, 2)` چیست؟
+- الف) `3.14`
+- ب) `3.15`
+- ج) `3`
+- د) `3.1416`
+
+**سؤال ۸.** کدام تابع یک عدد صحیح تصادفی در بازهٔ مشخص تولید می‌کند؟
+- الف) `random()`
+- ب) `rand()`
+- ج) `shuffle()`
+- د) `int()`
+
+**سؤال ۹.** خروجی قطعهٔ کد زیر چیست؟
+```php
+<?php
+$name = "sara";
+echo strtoupper(substr($name, 0, 1)) . substr($name, 1);
+?>
+```
+- الف) `Sara`
+- ب) `sAra`
+- ج) `SARA`
+- د) `sara`
+
+**سؤال ۱۰.** خروجی قطعهٔ کد زیر چیست؟
+```php
+<?php
+function grade($s) {
+    return ($s >= 10) ? "PASSED" : "FAILED";
+}
+echo strtolower(grade(15));
+?>
+```
+- الف) `PASSED`
+- ب) `passed`
+- ج) `Passed`
+- د) `FAILED`
+
+---
+
+## پاسخنامهٔ تشریحی
+
+**۱. پاسخ: ب** — کلمهٔ `"Hello"` پنج کاراکتر دارد (H, e, l, l, o)؛ بنابراین `strlen` عدد `5` را برمی‌گرداند.
+
+**۲. پاسخ: ج** — `strtoupper` همهٔ حروف را به بزرگ تبدیل می‌کند: `"ali"` → `"ALI"`.
+
+**۳. پاسخ: ب** — اندیس‌های رشته: `S(0) T(1) U(2) -(3) 1(4) 0(5) 1(6)`. از اندیس ۴ تا انتها برابر `"101"` است.
+
+**۴. پاسخ: ب** — `str_replace` همهٔ occurrences حرف `"a"` را با `"b"` جایگزین می‌کند: `banana` → `bbnbnb`.
+
+**۵. پاسخ: ب** — `abs` قدر مطلق را برمی‌گرداند؛ قدر مطلق `-7` برابر `7` است.
+
+**۶. پاسخ: ب** — `pow(2, 4)` یعنی `2` به توان `4` برابر `16`.
+
+**۷. پاسخ: الف** — `round(3.14159, 2)` عدد را به دو رقم اعشار گرد می‌کند: `3.14`.
+
+**۸. پاسخ: ب** — `rand(min, max)` یک عدد صحیح تصادفی در بازهٔ مشخص برمی‌گرداند.
+
+**۹. پاسخ: الف** — `substr($name, 0, 1)` کاراکتر اول `"s"` را برمی‌گرداند، سپس `strtoupper` آن را به `"S"` تبدیل می‌کند. `substr($name, 1)` بقیهٔ رشته `"ara"` را می‌دهد. حاصل: `"Sara"`.
+
+**۱۰. پاسخ: ب** — `grade(15)` مقدار `"PASSED"` را برمی‌گرداند (چون ۱۵ بزرگ‌تر مساوی ۱۰ است). سپس `strtolower` آن را به `"passed"` تبدیل می‌کند.
