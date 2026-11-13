@@ -34,7 +34,7 @@ require_once __DIR__ . '/../app/functions.php';
         <ul class="nav-links">
             <li><a href="index.php">صفحه اصلی</a></li>
             <li><a href="courses.php">دوره‌ها</a></li>
-            <li><a href="https://tamrin.secad.ir" target="_blank">تمرینات</a></li>
+            <li><a href="https://myclass.secad.ir" target="_blank">کلاس من</a></li>
             
             <!-- لیست دروس در منوی موبایل -->
             <?php if(isset($structure) && !empty($structure)): ?>

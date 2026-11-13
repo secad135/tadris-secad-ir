@@ -30,7 +30,7 @@ require_once __DIR__ . '/header.php';
 
             <div class="hero-buttons">
                 <a href="courses.php" class="hero-btn primary-btn">📚 ورود به دوره‌ها</a>
-                <a href="https://tamrin.secad.ir" target="_blank" class="hero-btn secondary-btn">✏️ بخش تمرینات</a>
+                <a href="https://myclass.secad.ir" target="_blank" class="hero-btn secondary-btn">سامانه کلاس من</a>
                 <a href="https://shad.ir/secadir" target="_blank" class="hero-btn outline-btn">💬 ارتباط در شاد</a>
             </div>
         </div>
