@@ -1,0 +1,334 @@
+{
+  "questions": [
+    {
+      "text": "کدام گزینه تعریف دقیق‌تری از «اینترنت» ارائه می‌دهد؟",
+      "difficulty": "easy",
+      "options": [
+        "یکی از سرویس‌هایی که روی وب اجرا می‌شود.",
+        "زیرساخت فیزیکی و شبکه‌ای جهانی که کامپیوترها را به هم متصل می‌کند.",
+        "نرم‌افزاری برای مشاهده صفحات وب.",
+        "نام دیگری برای وب سرور."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "وظیفه‌ی اصلی «DNS» چیست؟",
+      "difficulty": "easy",
+      "options": [
+        "ذخیره‌سازی فایل‌های وب‌سایت",
+        "ترجمه‌ی نام دامنه به آدرس IP",
+        "مدیریت پایگاه داده MySQL",
+        "نمایش صفحات وب به کاربر"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "کدام نرم‌افزار یک «وب سرور» است؟",
+      "difficulty": "easy",
+      "options": [
+        "MySQL",
+        "PHP",
+        "Apache",
+        "phpMyAdmin"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "«CMS» مخفف چه عبارتی است؟",
+      "difficulty": "easy",
+      "options": [
+        "Computer Management System",
+        "Content Management System",
+        "Client Management Server",
+        "Central Media System"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "مهم‌ترین ویژگی یک CMS چیست؟",
+      "difficulty": "easy",
+      "options": [
+        "نیاز به دانش تخصصی برنامه‌نویسی برای هر تغییر",
+        "مدیریت محتوا بدون نیاز به کدنویسی تخصصی",
+        "فقط برای ساخت وبلاگ کاربرد دارد",
+        "فقط به صورت آنلاین قابل استفاده است"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "وردپرس از کدام زبان برنامه‌نویسی و کدام پایگاه داده استفاده می‌کند؟",
+      "difficulty": "easy",
+      "options": [
+        "Python و SQLite",
+        "PHP و MySQL",
+        "Java و Oracle",
+        "Ruby و PostgreSQL"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "تفاوت اصلی WordPress.org و WordPress.com چیست؟",
+      "difficulty": "medium",
+      "options": [
+        "WordPress.org رایگان است اما WordPress.com پولی است.",
+        "در WordPress.org خودتان سایت را روی هاست نصب و مدیریت می‌کنید، اما WordPress.com یک سرویس میزبانی آماده است.",
+        "WordPress.com فقط برای فروشگاه‌هاست.",
+        "هیچ تفاوتی ندارند."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "«لوکال هاست» چه امکانی را برای ما فراهم می‌کند؟",
+      "difficulty": "easy",
+      "options": [
+        "میزبانی رایگان سایت روی اینترنت",
+        "شبیه‌سازی سرور روی کامپیوتر شخصی برای آزمایش و توسعه",
+        "خرید دامنه به قیمت ارزان‌تر",
+        "اتصال به DNS جهانی"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "حرف «P» دوم در نام XAMPP مخفف چیست؟",
+      "difficulty": "medium",
+      "options": [
+        "Python",
+        "PHP",
+        "Perl",
+        "PostgreSQL"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "کدام گزینه از مزایای استفاده از وردپرس نیست؟",
+      "difficulty": "medium",
+      "options": [
+        "رایگان و متن‌باز بودن",
+        "وجود هزاران پوسته و افزونه",
+        "نیاز اجباری به یادگیری زبان PHP برای هر تغییر کوچک",
+        "انجمن پشتیبانی بزرگ"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "کدام گزینه‌ها اجزای اصلی تشکیل‌دهنده‌ی بسته XAMPP هستند؟",
+      "difficulty": "easy",
+      "options": [
+        "Apache، MySQL، PHP",
+        "Nginx، PostgreSQL، Python",
+        "IIS، SQL Server، C#",
+        "Apache، Oracle، Java"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "چرا برای یادگیری وردپرس از XAMPP استفاده می‌کنیم؟",
+      "difficulty": "easy",
+      "options": [
+        "برای اینکه سایت ما روی اینترنت برای همه قابل مشاهده باشد.",
+        "برای شبیه‌سازی یک سرور واقعی روی کامپیوتر شخصی و آزمایش بدون هزینه و خطر.",
+        "برای خرید دامنه و هاست ارزان‌تر.",
+        "برای افزایش سرعت اینترنت."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "هنگام نصب XAMPP، کدام سرویس‌ها باید در کنترل پنل روشن شوند تا وردپرس اجرا شود؟",
+      "difficulty": "easy",
+      "options": [
+        "Mercury و FileZilla",
+        "Apache و MySQL",
+        "Perl و Tomcat",
+        "فقط Apache"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "پس از نصب XAMPP، برای تست موفقیت‌آمیز بودن نصب، چه آدرسی را در مرورگر وارد می‌کنیم؟",
+      "difficulty": "easy",
+      "options": [
+        "http://wordpress.org",
+        "http://localhost",
+        "http://apachefriends.org",
+        "http://my-site.com"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "کدام مشکل رایج باعث می‌شود سرویس Apache در XAMPP روشن نشود؟",
+      "difficulty": "medium",
+      "options": [
+        "نداشتن رم کافی",
+        "اشغال بودن پورت ۸۰ توسط نرم‌افزار دیگر",
+        "نصب نکردن پرینتر",
+        "باز نبودن مرورگر"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "اگر پورت Apache را از ۸۰ به ۸۰۸۱ تغییر دهیم، آدرس جدید برای دسترسی به سایت محلی چیست؟",
+      "difficulty": "medium",
+      "options": [
+        "http://localhost",
+        "http://localhost:80",
+        "http://localhost:8081",
+        "http://localhost/apache"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "فایل‌های وب‌سایت (مثل فایل‌های وردپرس) باید در کدام پوشه‌ی XAMPP قرار بگیرند؟",
+      "difficulty": "easy",
+      "options": [
+        "conf",
+        "mysql",
+        "htdocs",
+        "php"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "کدام گزینه یک مزیت مهم استفاده از XAMPP برای هنرجو است؟",
+      "difficulty": "easy",
+      "options": [
+        "سایت به طور خودکار روی اینترنت منتشر می‌شود.",
+        "امکان آزمایش و خطای آزادانه بدون آسیب به سایت واقعی.",
+        "حذف نیاز به یادگیری وردپرس.",
+        "افزایش فضای هاست اصلی."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "ابزار phpMyAdmin که همراه XAMPP ارائه می‌شود، برای چه کاری استفاده می‌شود؟",
+      "difficulty": "easy",
+      "options": [
+        "ویرایش فایل‌های PHP",
+        "مدیریت پایگاه داده MySQL (ایجاد جدول، کوئری و…)",
+        "طراحی گرافیکی پوسته",
+        "ارسال ایمیل"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "برای دسترسی به پیشخوان وردپرس در محیط XAMPP، پس از قرار دادن فایل‌ها در پوشه‌ی موردنظر، باید به آدرس http://localhost/نام-پوشه/... برویم. کدام گزینه صحیح است؟",
+      "difficulty": "medium",
+      "options": [
+        "wp-login.php",
+        "admin",
+        "wp-admin",
+        "dashboard"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "برای نصب وردپرس روی XAMPP، فایل‌های وردپرس را در کدام پوشه قرار می‌دهیم؟",
+      "difficulty": "easy",
+      "options": [
+        "php",
+        "mysql",
+        "htdocs",
+        "apache"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "پایگاه داده‌ی وردپرس را از طریق کدام ابزار ایجاد می‌کنیم؟",
+      "difficulty": "easy",
+      "options": [
+        "phpMyAdmin",
+        "FileZilla",
+        "Notepad",
+        "Apache Config"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "هنگام ساخت پایگاه داده، برای پشتیبانی از زبان فارسی کدام Collation مناسب است؟",
+      "difficulty": "medium",
+      "options": [
+        "latin1_swedish_ci",
+        "utf8mb4_general_ci",
+        "ascii_general_ci",
+        "binary"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "در محیط لوکال، نام کاربری پیش‌فرض پایگاه داده MySQL معمولاً چیست؟",
+      "difficulty": "easy",
+      "options": [
+        "admin",
+        "mysql",
+        "root",
+        "wordpress"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "فایل تنظیمات وردپرس برای اتصال به پایگاه داده چه نام دارد؟",
+      "difficulty": "easy",
+      "options": [
+        "config.php",
+        "settings.php",
+        "wp-config.php",
+        "database.php"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "کدام گزینه درباره‌ی فایل wp-config-sample.php صحیح است؟",
+      "difficulty": "medium",
+      "options": [
+        "فایل اصلی تنظیمات است و نیازی به تغییر نام ندارد.",
+        "نمونه‌ای است که باید به wp-config.php تغییر نام داده و ویرایش شود.",
+        "فایل پشتیبان قالب است.",
+        "مربوط به تنظیمات پوسته است."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "هنگام نصب وردپرس در محیط لوکال، مقدار رمز پایگاه داده معمولاً چگونه است؟",
+      "difficulty": "easy",
+      "options": [
+        "حتماً باید پر شود.",
+        "خالی گذاشته می‌شود.",
+        "باید admin باشد.",
+        "باید با نام دیتابیس یکسان باشد."
+      ],
+      "correct": 1
+    },
+    {
+      "text": "پس از نصب موفق وردپرس، برای ورود به پیشخوان از چه آدرسی استفاده می‌کنیم؟",
+      "difficulty": "medium",
+      "options": [
+        "http://localhost/mysite/admin",
+        "http://localhost/mysite/wp-login.php",
+        "http://localhost/mysite/dashboard",
+        "http://localhost/mysite/login"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "کدام خطا نشان‌دهنده‌ی اشتباه بودن اطلاعات پایگاه داده یا خاموش بودن MySQL است؟",
+      "difficulty": "medium",
+      "options": [
+        "«خطا در برقراری ارتباط با پایگاه‌داده»",
+        "«برگه پیدا نشد»",
+        "«تغییر مسیرهای بیش از حد»",
+        "«دسترسی رد شد»"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "در نصب وردپرس روی لوکال، گزینه‌ی «پیشوند جدول» به طور پیش‌فرض چه مقداری دارد و آیا باید تغییر کند؟",
+      "difficulty": "hard",
+      "options": [
+        "wp_ – باید حتماً تغییر کند.",
+        "wp_ – برای تمرین نیازی به تغییر نیست.",
+        "db_ – باید تغییر کند.",
+        "site_ – اختیاری است."
+      ],
+      "correct": 1
+    }
+  ]
+}
