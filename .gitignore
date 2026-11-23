@@ -11,3 +11,5 @@ config/config.php
 *.log
 
 public/test.php
+
+*.pdf
