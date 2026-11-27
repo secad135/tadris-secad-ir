@@ -5,6 +5,7 @@ Thumbs.db
 
 # Sensitive Configs
 config/config.php
+config/config.php.example
 .env
 
 # Logs & Caches
